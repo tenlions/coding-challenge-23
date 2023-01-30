@@ -1,0 +1,67 @@
+version: "2.4"
+
+#
+# This docker-compose file allows you setup a local roshambr alongside the required PostgreSQL and influxDB
+# instances. This file is also used during the integration testing phase and sets up all required services used for
+# testing.
+#
+# services:
+#
+#          roshambr - core spring boot backend for the filemanagement
+#          postgres - the postgres database used as the spring datasource
+#            influx - the influxdb used for metric
+#
+
+services:
+  roshambr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8050:8050
+      - 8000:8000
+    networks:
+      - roshambr
+    environment:
+      MINIO_URL: ${MINIO_URL}:${MINIO_PORT}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      S3_BUCKET_PREFIX: ${S3_BUCKET_PREFIX}
+      S3_REGION: ${S3_REGION}
+      POSTGRES_URL: ${POSTGRES_URL}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SERVER_PORT: ${SERVER_PORT}
+      CLAMAV_ENABLED: ${CLAMAV_ENABLED}
+      CLAMAV_URL: ${CLAMAV_URL}
+      CLAMAV_PORT: ${CLAMAV_PORT}
+      CLAMAV_TIMEOUT: ${CLAMAV_TIMEOUT}
+      KEYCLOAK_ENABLED: ${KEYCLOAK_ENABLED}
+      KEYCLOAK_URL: ${KEYCLOAK_URL}
+      KEYCLOAK_REALM: ${KEYCLOAK_REALM}
+      KEYCLOAK_CLIENT_ID: ${KEYCLOAK_CLIENT_ID}
+      RABBITMQ_HOST: ${RABBITMQ_HOST}
+      RABBITMQ_PORT: ${RABBITMQ_PORT}
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      CONVERTER_PATH: ${CONVERTER_PATH}
+
+    depends_on:
+      postgres:
+        condition: service_started
+      influx:
+        condition: service_started
+
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - roshambr
+
+networks:
+  roshambr:
