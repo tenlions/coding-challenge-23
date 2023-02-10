@@ -37,7 +37,7 @@ public class GameService {
         LOG.info("CPU choice: {}", cpuChoice);
 
         GameResult result = calculateResult(playerChoice, cpuChoice);
-        LOG.info("Game result: {} ({} < {})", result, playerChoice, cpuChoice);
+        LOG.info("Game result: {} ({} x {})", result, playerChoice, cpuChoice);
 
         return result;
     }
@@ -58,18 +58,18 @@ public class GameService {
      */
     protected GameResult calculateResult(GameChoice player1Choice, GameChoice player2Choice) {
         switch (player1Choice) {
-            case ROCK:
+            case ROCK -> {
                 if (GameChoice.ROCK.equals(player2Choice)) return GameResult.DRAW;
                 if (GameChoice.SCISSORS.equals(player2Choice)) return GameResult.PLAYER_1_WIN;
-                break;
-            case PAPER:
+            }
+            case PAPER -> {
                 if (GameChoice.PAPER.equals(player2Choice)) return GameResult.DRAW;
                 if (GameChoice.ROCK.equals(player2Choice)) return GameResult.PLAYER_1_WIN;
-                break;
-            case SCISSORS:
+            }
+            case SCISSORS -> {
                 if (GameChoice.SCISSORS.equals(player2Choice)) return GameResult.DRAW;
                 if (GameChoice.PAPER.equals(player2Choice)) return GameResult.PLAYER_1_WIN;
-                break;
+            }
         }
 
         return GameResult.PLAYER_2_WIN;

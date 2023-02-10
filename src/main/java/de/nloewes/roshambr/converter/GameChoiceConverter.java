@@ -23,7 +23,8 @@ public class GameChoiceConverter {
         try {
             return GameChoice.fromString(target.getPlayerChoice());
         } catch (IllegalArgumentException ex) {
-
+            //TODO
+            return null;
         }
     }
 }
