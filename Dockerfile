@@ -1,8 +1,6 @@
-FROM adoptopenjdk/openjdk11:alpine
+FROM adoptopenjdk/openjdk17:alpine
 MAINTAINER nloewes
-COPY ./target/filemanagement.jar /usr/src/filemanagement/
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-WORKDIR /usr/src/filemanagement
+COPY ./target/roshambr-0.0.1-SNAPSHOT.jar /usr/src/roshambr/
+WORKDIR /usr/src/roshambr
 EXPOSE 8050
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["java", "-jar", "filemanagement.jar"]
+CMD ["java", "-jar", "roshambr-0.0.1-SNAPSHOT.jar"]
