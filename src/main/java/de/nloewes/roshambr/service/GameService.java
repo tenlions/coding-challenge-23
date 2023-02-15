@@ -58,18 +58,18 @@ public class GameService {
      */
     protected GameResult calculateResult(GameChoice player1Choice, GameChoice player2Choice) {
         switch (player1Choice) {
-            case ROCK -> {
+            case ROCK:
                 if (GameChoice.ROCK.equals(player2Choice)) return GameResult.DRAW;
                 if (GameChoice.SCISSORS.equals(player2Choice)) return GameResult.PLAYER_1_WIN;
-            }
-            case PAPER -> {
+                break;
+            case PAPER:
                 if (GameChoice.PAPER.equals(player2Choice)) return GameResult.DRAW;
                 if (GameChoice.ROCK.equals(player2Choice)) return GameResult.PLAYER_1_WIN;
-            }
-            case SCISSORS -> {
+                break;
+            case SCISSORS:
                 if (GameChoice.SCISSORS.equals(player2Choice)) return GameResult.DRAW;
                 if (GameChoice.PAPER.equals(player2Choice)) return GameResult.PLAYER_1_WIN;
-            }
+                break;
         }
 
         return GameResult.PLAYER_2_WIN;

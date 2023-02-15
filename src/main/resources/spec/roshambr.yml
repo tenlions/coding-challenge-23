@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: asd
+  description: asd
+  version: asd
+
+paths:
+  /play/cpu:
+    post:
+      summary: Play a match of rock, paper, scissors against the CPU
+      operationId: postMatch
+      tags:
+        - gameResult
+      requestBody:
+        required: true
+        description: asdasdasd
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameChoice'
+      responses:
+        '200':
+          description: asdasd
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameResult'
+components:
+  schemas:
+    GameChoice:
+      type: object
+      required:
+        - playerChoice
+      properties:
+        playerChoice:
+          type: string
+          description: The player's choice of rock, paper or scissors
+    GameResult:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          type: string
+          description: The result of the most recent match
+    Exception:
+      type: object
+      required:
+        - httpStatus
+        - code
+        - message
+      properties:
+        httpStatus:
+          type: integer
+          format: integer32
+          description: asdasd
+        code:
+          type: integer
+          format: integer32
+          description: asdasd
+        message:
+          type: string
+          description: asdasd
+        value:
+          type: string
+          description: asdasd

@@ -29,6 +29,6 @@ public enum GameChoice {
      * @throws IllegalArgumentException if an invalid value was passed
      */
     public static GameChoice fromString(String choice) throws IllegalArgumentException {
-        return valueOf(choice);
+        return valueOf(choice.replaceAll(" ", "").toUpperCase());
     }
 }

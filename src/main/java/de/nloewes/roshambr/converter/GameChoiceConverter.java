@@ -1,5 +1,6 @@
 package de.nloewes.roshambr.converter;
 
+import de.nloewes.roshambr.exception.InvalidChoiceException;
 import de.nloewes.roshambr.model.GameChoiceResource;
 import de.nloewes.roshambr.model.GameChoice;
 import org.slf4j.Logger;
@@ -23,8 +24,8 @@ public class GameChoiceConverter {
         try {
             return GameChoice.fromString(target.getPlayerChoice());
         } catch (IllegalArgumentException ex) {
-            //TODO
-            return null;
+            LOG.error("Unsupported GameChoice '{}' encountered", target.getPlayerChoice(), ex);
+            throw new InvalidChoiceException(target.getPlayerChoice());
         }
     }
 }
