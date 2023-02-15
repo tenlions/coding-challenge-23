@@ -2,7 +2,6 @@ package de.nloewes.roshambr.converter;
 
 import de.nloewes.roshambr.exception.InvalidChoiceException;
 import de.nloewes.roshambr.model.GameChoice;
-import de.nloewes.roshambr.model.GameChoiceResource;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +11,7 @@ class GameChoiceConverterTest {
     @Test
     public void testToSource_valid_rock() {
         // GIVEN
-        GameChoiceResource target = new GameChoiceResource();
+        de.nloewes.roshambr.model.dto.GameChoice target = new de.nloewes.roshambr.model.dto.GameChoice();
         target.setPlayerChoice("ROCK");
 
         // WHEN
@@ -25,7 +24,7 @@ class GameChoiceConverterTest {
     @Test
     public void testToSource_valid_paper() {
         // GIVEN
-        GameChoiceResource target = new GameChoiceResource();
+        de.nloewes.roshambr.model.dto.GameChoice target = new de.nloewes.roshambr.model.dto.GameChoice();
         target.setPlayerChoice("PAPER");
 
         // WHEN
@@ -38,7 +37,7 @@ class GameChoiceConverterTest {
     @Test
     public void testToSource_valid_scissors() {
         // GIVEN
-        GameChoiceResource target = new GameChoiceResource();
+        de.nloewes.roshambr.model.dto.GameChoice target = new de.nloewes.roshambr.model.dto.GameChoice();
         target.setPlayerChoice("SCISSORS");
 
         // WHEN
@@ -51,7 +50,7 @@ class GameChoiceConverterTest {
     @Test
     public void testToSource_invalid() {
         // GIVEN
-        GameChoiceResource target = new GameChoiceResource();
+        de.nloewes.roshambr.model.dto.GameChoice target = new de.nloewes.roshambr.model.dto.GameChoice();
         target.setPlayerChoice("foo");
 
         // WHEN

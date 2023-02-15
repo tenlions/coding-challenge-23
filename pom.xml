@@ -63,11 +63,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
@@ -173,6 +168,7 @@
 							<modelPackage>de.nloewes.roshambr.model.dto</modelPackage>
 							<generateSupportingFiles>true</generateSupportingFiles>
 							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
 							<configOptions>
 								<delegatePattern>true</delegatePattern>
 							</configOptions>

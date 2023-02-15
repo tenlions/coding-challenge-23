@@ -1,6 +1,5 @@
 package de.nloewes.roshambr.converter;
 
-import de.nloewes.roshambr.model.GameResultResource;
 import de.nloewes.roshambr.model.GameResult;
 
 /**
@@ -11,12 +10,12 @@ import de.nloewes.roshambr.model.GameResult;
 public class GameResultConverter {
 
     /**
-     * Converts a given {@link GameResult} to an equivalent {@link GameResultResource}
+     * Converts a given {@link GameResult} to an equivalent {@link de.nloewes.roshambr.model.dto.GameResult}
      * @param source the GameResult to convert
      * @return the converted GameResultResource
      */
-    public static GameResultResource toTarget(GameResult source) {
-        GameResultResource target = new GameResultResource();
+    public static de.nloewes.roshambr.model.dto.GameResult toTarget(GameResult source) {
+        de.nloewes.roshambr.model.dto.GameResult  target = new de.nloewes.roshambr.model.dto.GameResult();
         target.setResult(source.name());
         return target;
     }
