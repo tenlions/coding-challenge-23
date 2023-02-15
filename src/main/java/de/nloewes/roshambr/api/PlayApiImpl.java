@@ -1,4 +1,4 @@
-package de.nloewes.roshambr.controller;
+package de.nloewes.roshambr.api;
 
 import de.nloewes.roshambr.api.PlayApiDelegate;
 import de.nloewes.roshambr.converter.GameChoiceConverter;
