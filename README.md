@@ -6,6 +6,14 @@ This project is currently WIP and was/is implemented as part of a coding challen
 
 ### Getting started
 
+TODO
+
 ### Setup
+
+#### Build
+```mvn clean install```
+
+#### Run locally
+```docker-compose up --build```
 
 ### Configuration
