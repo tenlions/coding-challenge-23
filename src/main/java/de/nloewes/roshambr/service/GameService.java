@@ -2,6 +2,7 @@ package de.nloewes.roshambr.service;
 
 import de.nloewes.roshambr.model.GameChoice;
 import de.nloewes.roshambr.model.GameResult;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,7 @@ public class GameService {
      * @param playerChoice the given {@link GameChoice} as input by the player
      * @return the {@link GameResult} of the match
      */
+    @Timed(value = "cpuMatch.time", description = "Time taken to play a match against the CPU")
     public GameResult playCpuMatch(GameChoice playerChoice) {
         LOG.info("Starting new match against CPU. Player choice: {}", playerChoice);
 

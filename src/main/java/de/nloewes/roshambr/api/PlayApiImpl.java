@@ -5,6 +5,7 @@ import de.nloewes.roshambr.converter.GameResultConverter;
 import de.nloewes.roshambr.model.dto.GameChoice;
 import de.nloewes.roshambr.model.dto.GameResult;
 import de.nloewes.roshambr.service.GameService;
+import io.micrometer.core.annotation.Timed;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatusCode;
@@ -21,6 +22,7 @@ public class PlayApiImpl implements PlayApiDelegate {
         this.gameService = gameService;
     }
 
+    @Timed(value = "postMatch.time", description = "Time taken to fulfill a POST request for a match")
     @Override
     public ResponseEntity<GameResult> postMatch(GameChoice gameChoice) {
         de.nloewes.roshambr.model.GameChoice playerChoice = GameChoiceConverter.toSource(gameChoice);
