@@ -1,6 +1,5 @@
 package de.nloewes.roshambr.api;
 
-import de.nloewes.roshambr.api.PlayApiDelegate;
 import de.nloewes.roshambr.converter.GameChoiceConverter;
 import de.nloewes.roshambr.converter.GameResultConverter;
 import de.nloewes.roshambr.model.dto.GameChoice;
