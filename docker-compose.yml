@@ -1,0 +1,71 @@
+version: "3"
+
+#
+# This docker-compose file allows you set up a local roshambr alongside the required PostgreSQL and influxDB
+# instances. This file is also used during the integration testing phase and sets up all required services used for
+# testing.
+#
+# services:
+#
+#          roshambr - core spring boot backend for the roshambr service
+#          postgres - the postgres database used as the spring datasource
+#            influx - the influxdb used for metric
+#          keycloak - the keycloak instance used for authentication
+#
+
+services:
+  roshambr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8050:8050
+      - 8000:8000
+    networks:
+      - roshambr
+    environment:
+      #TODO
+    depends_on:
+      postgres:
+        condition: service_started
+      influx:
+        condition: service_started
+      keycloak:
+        condition: service_started
+
+  postgres_backend:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_BACKEND}
+      POSTGRES_USER: ${POSTGRES_USER_BACKEND}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_BACKEND}
+      POSTGRES_DB_KEYCLOAK: ${POSTGRES_DB_KEYCLOAK}
+      POSTGRES_USER_KEYCLOAK: ${POSTGRES_USER_KEYCLOAK}
+      POSTGRES_PASSWORD_KEYCLOAK: ${POSTGRES_PASSWORD_KEYCLOAK}
+    networks:
+      - roshambr
+
+  postgres_keycloak:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_KEYCLOAK}
+      POSTGRES_USER: ${POSTGRES_USER_KEYCLOAK}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_KEYCLOAK}
+    networks:
+      - roshambr
+
+  keycloak:
+    image: keycloak
+    restart: always
+    ports:
+      - 28080:8080
+
+
+networks:
+  roshambr:
