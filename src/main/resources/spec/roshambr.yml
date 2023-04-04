@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: asd
-  description: asd
-  version: asd
+  title: Roshambr
+  description: A simple demo application, offering a basic API to play rock-paper-scissors against a CPU opponent
+  version: 0.0.1
 
 paths:
   /play/cpu:
@@ -13,14 +13,14 @@ paths:
         - gameResult
       requestBody:
         required: true
-        description: asdasdasd
+        description: The choice made by the player
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/GameChoice'
       responses:
         '200':
-          description: asdasd
+          description: The result of the match
           content:
             application/json:
               schema:
@@ -53,14 +53,14 @@ components:
         httpStatus:
           type: integer
           format: integer32
-          description: asdasd
+          description: The http status associated with the exception
         code:
           type: integer
           format: integer32
-          description: asdasd
+          description: Roshambr's error code for the specific error that occurred
         message:
           type: string
-          description: asdasd
+          description: The error message associated with the error that occurred
         value:
           type: string
-          description: asdasd
+          description: The given value that caused the error, if any
