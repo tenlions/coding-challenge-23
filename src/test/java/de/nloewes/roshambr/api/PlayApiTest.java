@@ -11,6 +11,7 @@ import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -41,9 +42,25 @@ public class PlayApiTest {
     }
 
     @Test
+    public void testPost_Invalid() throws Exception {
+        GameChoice choice = new GameChoice();
+        choice.setPlayerChoice("INVALID");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestJson = objectMapper.writeValueAsString(choice);
+        mockMvc.perform(post(PLAY_CPU_PATH).contentType(MediaType.APPLICATION_JSON).content(requestJson))
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.httpStatus").value("400"))
+                .andExpect(jsonPath("$.code").value("1"))
+                .andExpect(jsonPath("$.message").value("Invalid GameChoice"))
+                .andExpect(jsonPath("$.value").value("INVALID"));
+    }
+
+    @Test
     public void testPost_delegate_isSuccessful() {
         GameChoice choice = new GameChoice();
         choice.setPlayerChoice("ROCK");
         playApi.postMatch(choice);
     }
+
+
 }
