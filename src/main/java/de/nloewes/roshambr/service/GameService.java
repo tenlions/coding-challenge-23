@@ -58,6 +58,7 @@ public class GameService {
      * @param player2Choice the choice of the second player
      * @return the {@link GameResult} of the match
      */
+    @Timed(value = "calcResult.time", description = "Time taken to calculate the outcome of a match based on 2 choices")
     protected GameResult calculateResult(GameChoice player1Choice, GameChoice player2Choice) {
         switch (player1Choice) {
             case ROCK:
